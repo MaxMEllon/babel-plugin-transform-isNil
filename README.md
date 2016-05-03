@@ -23,6 +23,22 @@ if (foo === null || foo === undefined) {
 }
 ```
 
+**In**
+
+```js
+if (hoge.poge.isNil && foo.bar.isNil) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+**Out**
+
+```js
+if ((hoge.poge === null || hoge.poge === null) && (foo.bar === null || foo.bar === null)) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
 ## Usage
 
 ### Via `.babelrc`

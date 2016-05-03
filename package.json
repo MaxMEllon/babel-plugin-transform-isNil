@@ -26,5 +26,6 @@
     "babel-register": "^6.7.2"
   },
   "dependencies": {
+    "flat": "^2.0.0"
   }
 }
