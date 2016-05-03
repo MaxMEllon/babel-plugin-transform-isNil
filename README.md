@@ -1,4 +1,4 @@
-babel-plugin-transform-is-nil
+babel-plugin-transform-isNil
 ---
 
 Installation
@@ -34,7 +34,7 @@ if (hoge.poge.isNil && foo.bar.isNil) {
 **Out**
 
 ```js
-if ((hoge.poge === null || hoge.poge === null) && (foo.bar === null || foo.bar === null)) {
+if ((hoge.poge === null || hoge.poge === undefined) && (foo.bar === null || foo.bar === undefined)) {
   console.log('hoge.poge and foo.bar is null or undefined');
 }
 ```
@@ -45,7 +45,7 @@ if ((hoge.poge === null || hoge.poge === null) && (foo.bar === null || foo.bar =
 
 ```json
 {
-  "plugins": ["@maxmellon/babel-plugin-transform-is-nil"]
+  "plugins": ["babel-plugin-transform-isnil"]
 }
 ```
 
@@ -57,8 +57,8 @@ Requirement global
 * npm v3.7.2
 
 ```bash
-$ git clone https://github.com/MaxMEllon/babel-plugin-transform-is-nil
-$ cd babel-plugin-transform-is-nil
+$ git clone https://github.com/MaxMEllon/babel-plugin-transform-isNil
+$ cd babel-plugin-transform-isNil
 $ npm install
 
 $ npm test
