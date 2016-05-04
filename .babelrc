@@ -1,4 +1,3 @@
 {
-  "presets": ["es2015"],
-  "plugins": ["./lib/index.js"]
+  "presets": ["es2015"]
 }
