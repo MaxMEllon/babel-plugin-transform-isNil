@@ -1,12 +1,13 @@
 {
   "name": "babel-plugin-transform-isnil",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "replace the comparing of null or undefined with isNil",
   "main": "lib",
   "scripts": {
     "compile": "babel -V && babel src --out-dir lib",
-    "pretest": "npm run compile",
-    "test": "xo --ignore lib/*.js && ava",
+    "pretest": "npm run compile & npm run lint",
+    "test": "ava",
+    "lint": "xo --ignore lib/*.js",
     "fix": "xo --ignore lib/*.js --fix"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "xo": "^0.15.0"
   },
   "dependencies": {
-    "flat": "^2.0.0"
+    "flat": "^2.0.0",
+    "lodash.get": "^4.2.1"
   }
 }

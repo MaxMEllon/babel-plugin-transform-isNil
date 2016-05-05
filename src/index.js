@@ -1,4 +1,5 @@
 import flatten from 'flat'
+import _get from 'lodash.get'
 
 export default function () {
   return {
@@ -12,12 +13,26 @@ export default function () {
           const object = flatten(node)
           Object.keys(object).forEach(key => {
             if (/.name$/.test(key)) {
-              if (object[key] !== 'isNil') {
+              if (!/arguments/.test(key) && object[key] !== 'isNil') {
                 name += object[key] + '.'
               }
             }
           })
           name = name.replace(/.$/, '')
+          const parentObject = _get(path, 'parentPath.node.expression.object')
+          const type = _get(parentObject, 'type')
+          const args = _get(parentObject, 'arguments')
+          if (type === 'CallExpression') {
+            name += '('
+            if (args !== undefined) {
+              args.forEach(arg => {
+                name += arg.name
+                name += ','
+              })
+              name = name.replace(/,$/, '')
+            }
+            name += ')'
+          }
           path.replaceWithSourceString(`(${name} === null || ${name} === undefined)`)
         }
       }

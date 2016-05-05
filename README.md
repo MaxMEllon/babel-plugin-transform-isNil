@@ -53,6 +53,56 @@ if ((hoge.poge === null || hoge.poge === undefined) && (foo.bar === null || foo.
 }
 ```
 
+**In**
+
+```js
+if (hoge.poge().isNil) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+**Out**
+
+```js
+if (hoge.poge() === null || hoge.poge() === undefined) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+**In**
+
+```js
+if (hoge.poge(hoge).isNil) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+**Out**
+
+```js
+if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+## TODO
+
+**In**
+
+```js
+if (hoge().poge(hoge).isNil) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
+**Out**
+
+```js
+if (hoge().poge(hoge) === null || hoge().poge(hoge) === undefined) {
+  console.log('hoge.poge and foo.bar is null or undefined');
+}
+```
+
 ## Usage
 
 ### Via `.babelrc`
