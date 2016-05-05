@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "babel -V && babel src --out-dir lib",
     "pretest": "npm run compile",
-    "test": "xo src/*.js && ava"
+    "test": "xo --ignore lib/*.js && ava",
+    "fix": "xo --ignore lib/*.js --fix"
   },
   "repository": {
     "type": "git",
