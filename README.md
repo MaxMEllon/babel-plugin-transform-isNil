@@ -10,6 +10,30 @@
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"/>
 </a>
 
+About
+---
+
+I like Existential Operator in `CoffeeScript`.
+CoffeeScript can be written as follows:
+
+```coffee
+hoge?
+```
+
+Become to `JavaScript`
+
+```js
+hoge == null
+```
+
+Same meaning
+
+```
+hoge === null || hoge === undefined
+```
+
+I want to do the same thing in `JavaScript`.
+
 Installation
 ---
 
@@ -56,7 +80,7 @@ if ((hoge.poge === null || hoge.poge === undefined) && (foo.bar === null || foo.
 
 ```js
 if (hoge.poge().isNil) {
-  console.log('hoge.poge and foo.bar is null or undefined');
+  console.log('returned value of hoge.poge() function is null or undefined');
 }
 ```
 
@@ -64,7 +88,7 @@ if (hoge.poge().isNil) {
 
 ```js
 if (hoge.poge() === null || hoge.poge() === undefined) {
-  console.log('hoge.poge and foo.bar is null or undefined');
+  console.log('returned value of hoge.poge() function is null or undefined');
 }
 ```
 
@@ -72,7 +96,7 @@ if (hoge.poge() === null || hoge.poge() === undefined) {
 
 ```js
 if (hoge.poge(hoge).isNil) {
-  console.log('hoge.poge and foo.bar is null or undefined');
+  console.log('returned value of hoge.poge() function is null or undefined');
 }
 ```
 
@@ -80,11 +104,15 @@ if (hoge.poge(hoge).isNil) {
 
 ```js
 if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
-  console.log('hoge.poge and foo.bar is null or undefined');
+  console.log('returned value of hoge.poge() function is null or undefined');
 }
 ```
 
 ## TODO
+
+I can't think of implementation method. :cry:
+
+May possibly to stop the support of the fuunction. :persevere:
 
 **In**
 
