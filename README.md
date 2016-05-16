@@ -6,7 +6,6 @@
 <a href="https://travis-ci.org/MaxMEllon/babel-plugin-transform-isNil">
   <img src="https://travis-ci.org/MaxMEllon/babel-plugin-transform-isNil.svg?branch=master"/>
 </a>
-
 <a href="https://github.com/sindresorhus/xo">
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"/>
 </a>
