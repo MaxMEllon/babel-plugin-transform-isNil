@@ -12,6 +12,11 @@ export default function () {
           let name = ''
           const object = flatten(node)
           Object.keys(object).forEach(key => {
+            if (/.type$/.test(key)) {
+              if (object[key] === 'ThisExpression') {
+                name += 'this.'
+              }
+            }
             if (/.name$/.test(key)) {
               if (!/arguments/.test(key) && object[key] !== 'isNil') {
                 name += object[key] + '.'
