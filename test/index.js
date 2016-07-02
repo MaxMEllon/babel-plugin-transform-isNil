@@ -14,19 +14,19 @@ const options = {
 
 const specs = [
   {
-    description: 'expect isNil replace to `=== null || === undefined`',
+    description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
-    after: '"use strict";\n\nhoge === null || hoge === undefined;'
+    after: '"use strict";\n\nhoge === null || hoge === void 0;'
   },
   {
-    description: 'expect ! isNil replace to `! (=== null || === undefined)`',
+    description: 'expect ! isNil replace to `! (=== null || === void 0)`',
     before: '!hoge.isNil',
-    after: '"use strict";\n\n!(hoge === null || hoge === undefined);'
+    after: '"use strict";\n\n!(hoge === null || hoge === void 0);'
   },
   {
-    description: 'expect isNil replace to `=== null || === undefined`',
+    description: 'expect isNil replace to `=== null || === void 0`',
     before: 'class Hoge { constructor(hoge) { if (this.hoge.isNil) { this.hoge = hoge; } } }',
-    after: '"use strict";\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }\n\nvar Hoge = function Hoge(hoge) {\n  _classCallCheck(this, Hoge);\n\n  if (this.hoge === null || this.hoge === undefined) {\n    this.hoge = hoge;\n  }\n};'
+    after: '"use strict";\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }\n\nvar Hoge = function Hoge(hoge) {\n  _classCallCheck(this, Hoge);\n\n  if (this.hoge === null || this.hoge === void 0) {\n    this.hoge = hoge;\n  }\n};'
   },
   {
     description: 'expect isNil() dont replace',
@@ -36,12 +36,12 @@ const specs = [
   {
     description: '',
     before: 'foo.bar().isNil',
-    after: '"use strict";\n\nfoo.bar() === null || foo.bar() === undefined;'
+    after: '"use strict";\n\nfoo.bar() === null || foo.bar() === void 0;'
   },
   {
     description: '',
     before: 'foo.bar(hoge).isNil',
-    after: '"use strict";\n\nfoo.bar(hoge) === null || foo.bar(hoge) === undefined;'
+    after: '"use strict";\n\nfoo.bar(hoge) === null || foo.bar(hoge) === void 0;'
   }
 
 ]
