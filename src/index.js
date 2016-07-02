@@ -29,7 +29,7 @@ export default function () {
           const args = _get(parentObject, 'arguments')
           if (type === 'CallExpression') {
             name += '('
-            if (args !== undefined) {
+            if (args !== void 0) {
               args.forEach(arg => {
                 name += arg.name
                 name += ','
@@ -38,7 +38,8 @@ export default function () {
             }
             name += ')'
           }
-          path.replaceWithSourceString(`(${name} === null || ${name} === undefined)`)
+          /* eslint no-void: 0 */
+          path.replaceWithSourceString(`(${name} === null || ${name} === void 0)`)
         }
       }
     }
