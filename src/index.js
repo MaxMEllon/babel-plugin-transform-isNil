@@ -31,11 +31,12 @@ export default function () {
             if (node.object.property.name && node.object.computed === true) {
               name = name.replace(`.${node.object.property.name}`, '')
             }
-            const value = _get(node, 'object.property.extra.raw', null)
-                       || _get(node, 'object.property.name', null)
-            if (value) name += `[${value}]`
-          }
-          else if (type === 'CallExpression') {
+            const value = _get(node, 'object.property.extra.raw', null) ||
+                          _get(node, 'object.property.name', null)
+            if (value) {
+              name += `[${value}]`
+            }
+          } else if (type === 'CallExpression') {
             name += '('
             if (args !== void 0) {
               args.forEach(arg => {

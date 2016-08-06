@@ -57,7 +57,7 @@ const specs = [
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
     after: '"use strict";\n\nbar[hoge] === null || bar[hoge] === void 0;'
-  },
+  }
 ]
 
 specs.forEach(spec => {
