@@ -1,3 +1,19 @@
+v0.0.4
+---
+Fix: bracket not working.
+
+  **before**
+
+  ```js
+  foo[bar].isNil
+  ```
+  
+  **after**
+
+  ```js
+  foo[bar] === null || foo[bar] === undefined
+  ```
+
 v0.0.3
 ---
 Fix: this.someVar.isNil not working.
