@@ -42,8 +42,22 @@ const specs = [
     description: '',
     before: 'foo.bar(hoge).isNil',
     after: '"use strict";\n\nfoo.bar(hoge) === null || foo.bar(hoge) === void 0;'
+  },
+  {
+    description: 'Array test 1',
+    before: 'foo[0].isNil',
+    after: '"use strict";\n\nfoo[0] === null || foo[0] === void 0;'
+  },
+  {
+    description: 'Array test 2',
+    before: 'foo.bar["hoge"].isNil',
+    after: '"use strict";\n\nfoo.bar["hoge"] === null || foo.bar["hoge"] === void 0;'
+  },
+  {
+    description: 'Array test 3',
+    before: 'bar[hoge].isNil',
+    after: '"use strict";\n\nbar[hoge] === null || bar[hoge] === void 0;'
   }
-
 ]
 
 specs.forEach(spec => {
