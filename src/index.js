@@ -48,7 +48,11 @@ export default function () {
             name += ')'
           }
           /* eslint no-void: 0 */
-          path.replaceWithSourceString(`(${name} === null || ${name} === void 0)`)
+          path.replaceWithSourceString(`
+            (((typeof window === 'undefined' ? global : window).__TMP_VAL__ = ${name}) || true) &&
+            ((typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__)) === 'undefined' ||
+            (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null
+          `)
         }
       }
     }
