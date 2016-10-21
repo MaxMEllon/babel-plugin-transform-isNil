@@ -16,17 +16,12 @@ const specs = [
   {
     description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
-    after: '"use strict";\n\nhoge === null || hoge === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = hoge) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   },
   {
     description: 'expect ! isNil replace to `! (=== null || === void 0)`',
     before: '!hoge.isNil',
-    after: '"use strict";\n\n!(hoge === null || hoge === void 0);'
-  },
-  {
-    description: 'expect isNil replace to `=== null || === void 0`',
-    before: 'class Hoge { constructor(hoge) { if (this.hoge.isNil) { this.hoge = hoge; } } }',
-    after: '"use strict";\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }\n\nvar Hoge = function Hoge(hoge) {\n  _classCallCheck(this, Hoge);\n\n  if (this.hoge === null || this.hoge === void 0) {\n    this.hoge = hoge;\n  }\n};'
+    after: `"use strict";\n\n!((((typeof window === 'undefined' ? global : window).__TMP_VAL__ = hoge) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null);`
   },
   {
     description: 'expect isNil() dont replace',
@@ -34,29 +29,29 @@ const specs = [
     after: '"use strict";\n\nR.isNil();'
   },
   {
-    description: '',
+    description: 'function call test 1',
     before: 'foo.bar().isNil',
-    after: '"use strict";\n\nfoo.bar() === null || foo.bar() === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar()) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   },
   {
-    description: '',
+    description: 'function call test 2',
     before: 'foo.bar(hoge).isNil',
-    after: '"use strict";\n\nfoo.bar(hoge) === null || foo.bar(hoge) === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar(hoge)) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   },
   {
     description: 'Array test 1',
     before: 'foo[0].isNil',
-    after: '"use strict";\n\nfoo[0] === null || foo[0] === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo[0]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   },
   {
     description: 'Array test 2',
     before: 'foo.bar["hoge"].isNil',
-    after: '"use strict";\n\nfoo.bar["hoge"] === null || foo.bar["hoge"] === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar["hoge"]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   },
   {
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
-    after: '"use strict";\n\nbar[hoge] === null || bar[hoge] === void 0;'
+    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = bar[hoge]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
   }
 ]
 

@@ -144,7 +144,7 @@ Development
 ---
 Requirement global
 
-* Node v5.2.0
+* Node v6.2.0
 * npm v3.7.2
 
 ```bash
