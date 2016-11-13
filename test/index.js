@@ -12,16 +12,18 @@ const options = {
   ]
 }
 
+const helper = 'var _isNilWrapper = function (val) { return val === null || typeof val === \'undefined\'; }();'
+
 const specs = [
   {
     description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = hoge) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(hoge);`
   },
   {
     description: 'expect ! isNil replace to `! (=== null || === void 0)`',
     before: '!hoge.isNil',
-    after: `"use strict";\n\n!((((typeof window === 'undefined' ? global : window).__TMP_VAL__ = hoge) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null);`
+    after: `"use strict";\n\n${helper}\n\n!_isNilWrapper(hoge);`
   },
   {
     description: 'expect isNil() dont replace',
@@ -31,27 +33,27 @@ const specs = [
   {
     description: 'function call test 1',
     before: 'foo.bar().isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar()) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar());`
   },
   {
     description: 'function call test 2',
     before: 'foo.bar(hoge).isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar(hoge)) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar(hoge));`
   },
   {
     description: 'Array test 1',
     before: 'foo[0].isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo[0]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo[0]);`
   },
   {
     description: 'Array test 2',
     before: 'foo.bar["hoge"].isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = foo.bar["hoge"]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar["hoge"]);`
   },
   {
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
-    after: `"use strict";\n\n(((typeof window === 'undefined' ? global : window).__TMP_VAL__ = bar[hoge]) || true) && typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__ === 'undefined' || (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null;`
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(bar[hoge]);`
   }
 ]
 
