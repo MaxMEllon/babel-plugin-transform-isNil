@@ -1,10 +1,54 @@
 import flatten from 'flat'
 import _get from 'lodash.get'
+import template from 'babel-template'
+import * as t from 'babel-types'
+
+const isNilWrapper = template('(function (val) { return val === null || typeof val === \'undefined\' })()')
+
+function addIsNilHelper() {
+  // Modified from https://github.com/babel/babel/blob/master/packages/babel-core/src/transformation/file/index.js#L280
+  const name = 'isNilWrapper'
+
+  let declar = this.declarations[name]
+  if (declar) {
+    return declar
+  }
+
+  if (!this.usedHelpers[name]) {
+    this.metadata.usedHelpers.push(name)
+    this.usedHelpers[name] = true
+  }
+
+  let generator = this.get('helperGenerator')
+  let runtime = this.get('helpersNamespace')
+
+  if (generator) {
+    let res = generator(name)
+
+    if (res) {
+      return res
+    }
+  } else if (runtime) {
+    return t.memberExpression(runtime, t.identifier(name))
+  }
+
+  let ref = isNilWrapper().expression
+  let uid = this.declarations[name] = this.scope.generateUidIdentifier(name)
+
+  ref._compact = true
+  this.scope.push({
+    id: uid,
+    init: ref,
+    unique: true
+  })
+
+  return uid
+}
 
 export default function () {
   return {
     visitor: {
-      MemberExpression(path) {
+      MemberExpression(path, state) {
         const {node} = path
         const {property} = node
         let name = ''
@@ -47,15 +91,13 @@ export default function () {
             }
             name += ')'
           }
+
+          const isNilWrapper = addIsNilHelper.call(state.file).name
+
           /* eslint no-void: 0 */
-          path.replaceWithSourceString(`
-            (((typeof window === 'undefined' ? global : window).__TMP_VAL__ = ${name}) || true) &&
-            ((typeof (typeof window === 'undefined' ? global : window).__TMP_VAL__)) === 'undefined' ||
-            (typeof window === 'undefined' ? global : window).__TMP_VAL__ === null
-          `)
+          path.replaceWithSourceString(`${isNilWrapper}(${name})`)
         }
       }
     }
   }
 }
-
