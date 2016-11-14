@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-isnil",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "replace the comparing of null or undefined with isNil",
   "main": "lib",
   "scripts": {

@@ -1,3 +1,7 @@
+v0.0.7
+---
+Reworked transform to use a helper function.
+
 v0.0.5
 ---
 Update modules
