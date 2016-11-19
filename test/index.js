@@ -54,6 +54,21 @@ const specs = [
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
     after: `"use strict";\n\n${helper}\n\n_isNilWrapper(bar[hoge]);`
+  },
+  {
+    description: 'Complex test 1',
+    before: 'foo.bar.hoge("poge")[1].bar.isNil',
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar.hoge("poge")[1].bar);`
+  },
+  {
+    description: 'Complex test 2',
+    before: 'foo.bar["hoge"]["poge"].foo[bar][2].isNil',
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar["hoge"]["poge"].foo[bar][2]);`
+  },
+  {
+    description: 'Complex test 3',
+    before: '(hoge.poge || { }).foo.bar["hoge"][3].poge.isNil',
+    after: `"use strict";\n\n${helper}\n\n_isNilWrapper((hoge.poge || { }).foo.bar[3]["hoge"].poge);`
   }
 ]
 
