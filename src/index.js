@@ -3,7 +3,7 @@ import _get from 'lodash.get'
 import template from 'babel-template'
 import * as t from 'babel-types'
 
-const isNilWrapper = template('(function (val) { return val === null || typeof val === \'undefined\' })()')
+const isNilWrapper = template('(function (val) { return val === null || typeof val === \'undefined\' })')
 
 function addIsNilHelper() {
   // Modified from https://github.com/babel/babel/blob/master/packages/babel-core/src/transformation/file/index.js#L280

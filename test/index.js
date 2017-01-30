@@ -12,7 +12,7 @@ const options = {
   ]
 }
 
-const helper = 'var _isNilWrapper = function (val) { return val === null || typeof val === \'undefined\'; }();'
+const helper = 'var _isNilWrapper = function _isNilWrapper(val) { return val === null || typeof val === \'undefined\'; };'
 
 const specs = [
   {
