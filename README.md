@@ -108,28 +108,6 @@ if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
 }
 ```
 
-## TODO
-
-I can't think of implementation method. :cry:
-
-May possibly to stop the support of the fuunction. :persevere:
-
-**In**
-
-```js
-if (hoge().poge(hoge).isNil) {
-  console.log('hoge.poge and foo.bar is null or undefined');
-}
-```
-
-**Out**
-
-```js
-if (hoge().poge(hoge) === null || hoge().poge(hoge) === undefined) {
-  console.log('hoge.poge and foo.bar is null or undefined');
-}
-```
-
 ## Usage
 
 ### Via `.babelrc`
@@ -144,8 +122,7 @@ Development
 ---
 Requirement global
 
-* Node v6.2.0
-* npm v3.7.2
+* Node v4 or above
 
 ```bash
 $ git clone https://github.com/MaxMEllon/babel-plugin-transform-isNil
@@ -154,6 +131,10 @@ $ npm install
 
 $ npm test
 ```
+
+Special Thanks
+---
+- [@shnhrrsn](https://github.com/shnhrrsn)
 
 LICENSE
 ---
