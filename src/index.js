@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const template = require('babel-template')
 const t = require('babel-types')
@@ -59,7 +59,7 @@ function plugin() {
         const isNilWrapper = addIsNilHelper.call(state.file).name
         path.replaceWith(t.callExpression(
           t.identifier(isNilWrapper),
-          [ node.object ]
+          [node.object]
         ))
       }
     }

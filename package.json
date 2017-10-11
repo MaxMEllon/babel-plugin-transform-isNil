@@ -6,8 +6,8 @@
   "scripts": {
     "pretest": "npm run lint",
     "test": "ava",
-    "lint": "xo --ignore src/*.js",
-    "fix": "xo --ignore src/*.js --fix"
+    "lint": "xo",
+    "fix": "xo --fix"
   },
   "repository": {
     "type": "git",
