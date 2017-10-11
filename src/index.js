@@ -1,7 +1,7 @@
-import flatten from 'flat'
-import _get from 'lodash.get'
-import template from 'babel-template'
-import * as t from 'babel-types'
+const flatten = require('flat')
+const _get = require('lodash.get')
+const template = require('babel-template')
+const t = require('babel-types')
 
 const isNilWrapper = template('(function (val) { return val === null || typeof val === \'undefined\' })')
 
@@ -101,3 +101,5 @@ export default function () {
     }
   }
 }
+
+module.exports = plugin

@@ -2,13 +2,12 @@
   "name": "babel-plugin-transform-isnil",
   "version": "0.0.8",
   "description": "replace the comparing of null or undefined with isNil",
-  "main": "lib",
+  "main": "src",
   "scripts": {
-    "compile": "babel -V && babel src --out-dir lib",
-    "pretest": "npm run compile & npm run lint",
+    "pretest": "npm run lint",
     "test": "ava",
-    "lint": "xo --ignore lib/*.js",
-    "fix": "xo --ignore lib/*.js --fix"
+    "lint": "xo --ignore src/*.js",
+    "fix": "xo --ignore src/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -28,12 +27,8 @@
   },
   "homepage": "https://github.com/MaxMEllon/babel-plugin-existential-operator#readme",
   "devDependencies": {
-    "ava": "^0.14.0",
-    "ava-spec": "^1.0.1",
-    "babel-cli": "^6.11.4",
+    "ava": "^0.22.0",
     "babel-core": "^6.13.2",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-register": "^6.11.6",
     "flat": "^2.0.1",
     "lodash.get": "^4.4.1",
     "xo": "^0.15.0"

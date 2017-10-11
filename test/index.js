@@ -1,13 +1,10 @@
 import vm from 'vm'
-import test from 'ava-spec'
+import test from 'ava'
 import {transform} from 'babel-core'
 
-import plugin from '../lib/index'
+import plugin from '../src/index'
 
 const options = {
-  presets: [
-    'es2015'
-  ],
   plugins: [
     plugin
   ]
@@ -74,9 +71,9 @@ const transformSpecs = [
 ]
 
 transformSpecs.forEach(spec => {
-  test(`Transform: ${spec.description}`, it => {
+  test(`Transform: ${spec.description}`, t => {
     const result = transform(spec.before, options)
-    it.is(result.code, spec.after)
+    t.is(result.code, spec.after)
   })
 })
 
@@ -105,8 +102,8 @@ const evalSpecs = [
 ]
 
 evalSpecs.forEach(spec => {
-  test(`Eval: ${spec.description}`, it => {
+  test(`Eval: ${spec.description}`, t => {
     const transformed = transform(spec.code, options)
-    it.is(vm.runInNewContext(transformed.code), spec.result)
+    t.is(vm.runInNewContext(transformed.code), spec.result)
   })
 })
