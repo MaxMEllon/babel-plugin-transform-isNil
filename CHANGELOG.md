@@ -1,3 +1,7 @@
+v1.0.1
+---
+Install dependencies.
+
 v1.0.0
 ---
 This greatly simplifies the logic of the plugin + adds eval tests to make sure the code actually runs!
