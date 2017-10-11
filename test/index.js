@@ -1,3 +1,4 @@
+import vm from 'vm'
 import test from 'ava-spec'
 import {transform} from 'babel-core'
 
@@ -14,7 +15,7 @@ const options = {
 
 const helper = 'var _isNilWrapper = function _isNilWrapper(val) { return val === null || typeof val === \'undefined\'; };'
 
-const specs = [
+const transformSpecs = [
   {
     description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
@@ -72,10 +73,40 @@ const specs = [
   }
 ]
 
-specs.forEach(spec => {
-  test(spec.description, it => {
+transformSpecs.forEach(spec => {
+  test(`Transform: ${spec.description}`, it => {
     const result = transform(spec.before, options)
     it.is(result.code, spec.after)
   })
 })
 
+const evalSpecs = [
+  {
+    description: 'expect "null" to be true',
+    code: 'null.isNil',
+    result: true
+  }, {
+    description: 'expect "undefined" to be true',
+    code: 'undefined.isNil',
+    result: true
+  }, {
+    description: 'expect "{ }" to be false',
+    code: '({ }).isNil',
+    result: false
+  }, {
+    description: 'expect empty string to be false',
+    code: '"".isNil',
+    result: false
+  }, {
+    description: 'expect "0" to be false',
+    code: '(0).isNil',
+    result: false
+  }
+]
+
+evalSpecs.forEach(spec => {
+  test(`Eval: ${spec.description}`, it => {
+    const transformed = transform(spec.code, options)
+    it.is(vm.runInNewContext(transformed.code), spec.result)
+  })
+})
