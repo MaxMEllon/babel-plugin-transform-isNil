@@ -10,63 +10,63 @@ const options = {
   ]
 }
 
-const helper = 'var _isNilWrapper = function _isNilWrapper(val) { return val === null || typeof val === \'undefined\'; };'
+const helper = 'var _isNilWrapper = function (val) { return val === null || typeof val === \'undefined\'; };'
 
 const transformSpecs = [
   {
     description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(hoge);`
+    after: `${helper}\n\n_isNilWrapper(hoge);`
   },
   {
     description: 'expect ! isNil replace to `! (=== null || === void 0)`',
     before: '!hoge.isNil',
-    after: `"use strict";\n\n${helper}\n\n!_isNilWrapper(hoge);`
+    after: `${helper}\n\n!_isNilWrapper(hoge);`
   },
   {
     description: 'expect isNil() dont replace',
     before: 'R.isNil()',
-    after: '"use strict";\n\nR.isNil();'
+    after: 'R.isNil();'
   },
   {
     description: 'function call test 1',
     before: 'foo.bar().isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar());`
+    after: `${helper}\n\n_isNilWrapper(foo.bar());`
   },
   {
     description: 'function call test 2',
     before: 'foo.bar(hoge).isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar(hoge));`
+    after: `${helper}\n\n_isNilWrapper(foo.bar(hoge));`
   },
   {
     description: 'Array test 1',
     before: 'foo[0].isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo[0]);`
+    after: `${helper}\n\n_isNilWrapper(foo[0]);`
   },
   {
     description: 'Array test 2',
     before: 'foo.bar["hoge"].isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar["hoge"]);`
+    after: `${helper}\n\n_isNilWrapper(foo.bar["hoge"]);`
   },
   {
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(bar[hoge]);`
+    after: `${helper}\n\n_isNilWrapper(bar[hoge]);`
   },
   {
     description: 'Complex test 1',
     before: 'foo.bar.hoge("poge")[1].bar.isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar.hoge("poge")[1].bar);`
+    after: `${helper}\n\n_isNilWrapper(foo.bar.hoge("poge")[1].bar);`
   },
   {
     description: 'Complex test 2',
     before: 'foo.bar["hoge"]["poge"].foo[bar][2].isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper(foo.bar["hoge"]["poge"].foo[bar][2]);`
+    after: `${helper}\n\n_isNilWrapper(foo.bar["hoge"]["poge"].foo[bar][2]);`
   },
   {
     description: 'Complex test 3',
-    before: '(hoge.poge || { }).foo.bar["hoge"][3].poge.isNil',
-    after: `"use strict";\n\n${helper}\n\n_isNilWrapper((hoge.poge || { }).foo.bar[3]["hoge"].poge);`
+    before: '(hoge.poge || {}).foo.bar["hoge"][3].poge.isNil',
+    after: `${helper}\n\n_isNilWrapper((hoge.poge || {}).foo.bar["hoge"][3].poge);`
   }
 ]
 
