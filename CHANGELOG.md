@@ -1,3 +1,9 @@
+v1.0.0
+---
+This greatly simplifies the logic of the plugin + adds eval tests to make sure the code actually runs!
+
+Special Thanks @shnhrrsn
+
 v0.0.7
 ---
 Reworked transform to use a helper function.
@@ -15,7 +21,7 @@ Fix: bracket not working.
   ```js
   foo[bar].isNil
   ```
-  
+
   **after**
 
   ```js
