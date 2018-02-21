@@ -1,4 +1,13 @@
-# babel-plugin-transform-isNil
+# babel-plugin-transform-isNil is dead
+
+Coming new syntax as [proposal-optional-chaining](https://github.com/tc39/proposal-optional-chaining) on [babel7](https://github.com/babel/babel/wiki/Babel-7)
+
+**Which is only compatible with babel6**
+
+Please use **[@babel/plugin-proposal-optional-chaining](https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-optional-chaining)**
+
+
+## babel-plugin-transform-isNil
 
 <a href="https://www.npmjs.com/package/babel-plugin-transform-isnil">
 	<img src="https://nodei.co/npm/babel-plugin-transform-isnil.png"/>
@@ -10,8 +19,7 @@
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"/>
 </a>
 
-About
----
+### About
 
 I like Existential Operator in `CoffeeScript`.
 CoffeeScript can be written as follows:
@@ -34,8 +42,7 @@ hoge === null || hoge === undefined
 
 I want to do the same thing in `JavaScript`.
 
-Installation
----
+### Installation
 
 ```bash
 $ npm install --save babel-plugin-transform-isnil
@@ -108,9 +115,9 @@ if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
 }
 ```
 
-## Usage
+### Usage
 
-### Via `.babelrc`
+#### Via `.babelrc`
 
 ```json
 {
@@ -118,8 +125,8 @@ if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
 }
 ```
 
-Development
----
+### Development
+
 Requirement global
 
 * Node v4 or above
@@ -132,8 +139,8 @@ $ npm install
 $ npm test
 ```
 
-Special Thanks
----
+### Special Thanks
+
 - [@shnhrrsn](https://github.com/shnhrrsn)
 
 LICENSE
